@@ -1,0 +1,9 @@
+{
+  "autoload": {
+    "psr-4": {
+      "mix\\": "mixphp/mix1/",
+      "store\\": "store/",
+      "apps\\": "apps/"
+    }
+  }
+}
