@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="WEB_MODULE" version="4">
+  <component name="NewModuleRootManager">
+    <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$/store" isTestSource="false" packagePrefix="store\" />
+      <sourceFolder url="file://$MODULE_DIR$/mixphp/mix1" isTestSource="false" packagePrefix="mix\" />
+      <sourceFolder url="file://$MODULE_DIR$/apps" isTestSource="false" packagePrefix="apps\" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/composer" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+  </component>
+</module>
