@@ -4,6 +4,7 @@ namespace apps\index\controllers;
 
 use mix\web\Controller;
 use mix\web\UploadFile;
+use Swoole\Coroutine;
 use apps\index\models\IndexForm;
 
 class IndexController extends Controller
@@ -34,6 +35,7 @@ class IndexController extends Controller
 
         // input form get
         \Mix::app()->varDump($this->req);
+        sleep(2);
 
         // mysql test sync
         $data = [
@@ -68,6 +70,7 @@ class IndexController extends Controller
 
     }
 
+    //upload  and  resize jpg system
     public function actionUpload(){
         $file = UploadFile::getInstanceByName('upfile');
         $extname = $file->getExtension();
@@ -85,6 +88,58 @@ class IndexController extends Controller
         $res['url'] = "http://www.xxx.com/a/b/c/".$newname;
         return $res;
 
+    }
+
+    // async mysql client  test check
+    public function actionComysql(){
+        $mysql = new \Swoole\Coroutine\MySQL();
+        $res = $mysql->connect(['host' => '127.0.0.1', 'user' => 'root', 'password' => 'square82', 'database' => 'wheng']);
+        $mysql->setDefer();
+
+        if ($res == false) {
+            //$response->end("MySQL connect fail!");
+            return;
+        }
+        $mysql->query('select sleep(11)');  //并不支持多开  在一个线程waitpid时候其他不能用同一个对象开
+
+        return;
+    }
+
+    // async curl client
+    public function actionCocurl(){
+        $cli = new \Swoole\Coroutine\Http\Client('127.0.0.1', 9501);
+        $cli->setHeaders([
+            'Host' => "localhost",
+            "User-Agent" => 'Chrome/49.0.2587.3',
+            'Accept' => 'text/html,application/xhtml+xml,application/xml',
+            'Accept-Encoding' => 'gzip',
+        ]);
+        $cli->set([ 'timeout' => 0.1]);  //这个timeout 不是超过这个时间就不请求了，而是超过这个时间就把cpu交给后面的任务
+        $cli->setDefer();  //声明延迟收包
+        $cli->get('/index/rdb/');
+        $cli->recv();
+        $cli->get('/index/rdb/');
+        $cli->recv();
+        $cli->get('/index/rdb/');
+        $cli->recv();
+        $cli->get('/index/rdb/');
+        $cli->recv();
+        //var_dump($cli->body());  //如果想要结果 从这里拿 这是同步逻辑
+        return true;
+    }
+
+    // async 直接调用用户函数 或者执行命令行
+    public function actionCofunc(){
+        \Swoole\Coroutine::set(array(
+            'max_coroutine' => 4096,
+        ));
+        \Swoole\Coroutine::call_user_func($this->actionIndex());  //调度类库方法
+        \Swoole\Coroutine::call_user_func($this->actionIndex());
+        \Swoole\Coroutine::call_user_func($this->actionIndex());
+        \Swoole\Coroutine::call_user_func($this->actionIndex());
+        //$cmd = "/user/bin/php index.php a b";
+        //$cmd = \Swoole\Coroutine::exec($cmd); //直接调度命令行
+        return;
     }
 
 //    // API 范例
