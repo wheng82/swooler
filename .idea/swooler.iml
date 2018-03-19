@@ -6,6 +6,8 @@
       <sourceFolder url="file://$MODULE_DIR$/mixphp/mix1" isTestSource="false" packagePrefix="mix\" />
       <sourceFolder url="file://$MODULE_DIR$/apps" isTestSource="false" packagePrefix="apps\" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/composer" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/phpmyadmin/sql-parser" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/polyfill-mbstring" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

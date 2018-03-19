@@ -9,4 +9,6 @@ return array(
     'store\\' => array($baseDir . '/store'),
     'mix\\' => array($baseDir . '/mixphp/mix1'),
     'apps\\' => array($baseDir . '/apps'),
+    'Symfony\\Polyfill\\Mbstring\\' => array($vendorDir . '/symfony/polyfill-mbstring'),
+    'PhpMyAdmin\\SqlParser\\' => array($vendorDir . '/phpmyadmin/sql-parser/src'),
 );

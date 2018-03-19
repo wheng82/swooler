@@ -47,7 +47,7 @@ class Error extends Component
     public static function appException($e)
     {
         // debug处理 & exit处理
-        if ($e instanceof \mix\exception\DebugException || $e instanceof \mix\exception\EndException) {
+        if ($e instanceof \mix\exception\DebugException || $e instanceof \mix\exception\Err) {
             \Mix::app()->response->content = $e->getMessage();
             \Mix::app()->response->send();
             \Mix::app()->cleanComponents();

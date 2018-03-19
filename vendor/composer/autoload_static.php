@@ -6,6 +6,10 @@ namespace Composer\Autoload;
 
 class ComposerStaticInit7b86a9c973b6deb108af8f47275b0dd2
 {
+    public static $files = array (
+        '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
+    );
+
     public static $prefixLengthsPsr4 = array (
         's' => 
         array (
@@ -18,6 +22,14 @@ class ComposerStaticInit7b86a9c973b6deb108af8f47275b0dd2
         'a' => 
         array (
             'apps\\' => 5,
+        ),
+        'S' => 
+        array (
+            'Symfony\\Polyfill\\Mbstring\\' => 26,
+        ),
+        'P' => 
+        array (
+            'PhpMyAdmin\\SqlParser\\' => 21,
         ),
     );
 
@@ -33,6 +45,14 @@ class ComposerStaticInit7b86a9c973b6deb108af8f47275b0dd2
         'apps\\' => 
         array (
             0 => __DIR__ . '/../..' . '/apps',
+        ),
+        'Symfony\\Polyfill\\Mbstring\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/polyfill-mbstring',
+        ),
+        'PhpMyAdmin\\SqlParser\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/phpmyadmin/sql-parser/src',
         ),
     );
 
